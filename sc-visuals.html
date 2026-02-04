@@ -1,0 +1,112 @@
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<div id="main-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; background-color: #010409;"></div>
+
+<div id="particles-js" style="
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 50%; 
+    height: 100vh; 
+    z-index: -5;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+"></div>
+
+<div id="spins-container" style="
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    width: 50%; /* AUMENTADO AL 50% */
+    height: 100vh; 
+    z-index: -5; 
+    overflow: hidden;
+    /* La máscara ahora empieza un poco antes para que el fundido sea más suave */
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%);
+"></div>
+
+<script>
+/* --- 1. PARTÍCULAS (IZQUIERDA) --- */
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": "#00d2ff" }, 
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.6 },
+    "size": { "value": 3, "random": true },
+    "line_linked": { "enable": true, "distance": 150, "color": "#00d2ff", "opacity": 0.4, "width": 1 },
+    "move": { "enable": true, "speed": 1.2 }
+  },
+  "interactivity": { "events": { "onhover": { "enable": false } } },
+  "retina_detect": true
+});
+
+/* --- 2. ESPINES (DERECHA) - CORREGIDO --- */
+const container = document.getElementById('spins-container');
+const spacing = 45; 
+
+// TRUCO: Calculamos columnas para el 60% de la pantalla (0.6) aunque el div sea del 50%
+// Esto garantiza que sobran espines por la derecha y no queda hueco negro.
+const cols = Math.ceil(window.innerWidth * 0.6 / spacing); 
+const rows = Math.ceil(window.innerHeight / spacing);
+
+for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+        const spin = document.createElement('div');
+        spin.classList.add('quantum-spin');
+        // Los colocamos desde la izquierda del contenedor hacia la derecha
+        spin.style.left = `${j * spacing + 10}px`;
+        spin.style.top = `${i * spacing + 20}px`;
+        container.appendChild(spin);
+    }
+}
+
+document.addEventListener('mousemove', (e) => {
+    const spins = document.querySelectorAll('.quantum-spin');
+    const containerRect = container.getBoundingClientRect();
+    
+    // Optimizacion: Solo calculamos si el ratón está en la mitad derecha de la pantalla
+    if (e.clientX < window.innerWidth * 0.4) return; 
+
+    const mouseX = e.clientX - containerRect.left;
+    const mouseY = e.clientY - containerRect.top;
+
+    spins.forEach(spin => {
+        const spinX = parseFloat(spin.style.left);
+        const spinY = parseFloat(spin.style.top);
+        
+        const deltaX = mouseX - spinX;
+        const deltaY = mouseY - spinY;
+        const angle = Math.atan2(deltaY, deltaX);
+        
+        spin.style.transform = `rotate(${angle}rad)`;
+    });
+});
+</script>
+
+<style>
+.quantum-spin {
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    background: #58a6ff;
+    border-radius: 2px;
+    transform-origin: center left;
+    opacity: 0.7; 
+    transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    will-change: transform; /* Optimización para que vaya fluido */
+}
+/* La punta de la flecha */
+.quantum-spin::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -1.5px;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00d2ff;
+}
+</style>

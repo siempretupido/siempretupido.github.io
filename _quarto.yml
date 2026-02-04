@@ -1,0 +1,24 @@
+project:
+  type: website
+
+website:
+  title: "Nicolás Rojo"
+  navbar:
+    background: "#010409"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Projects
+    right:
+      - icon: github
+        href: https://github.com/
+      - icon: linkedin
+        href: https://linkedin.com/
+
+# ... (lo de arriba igual)
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    include-after-body: sc-visuals.html  # <--- CAMBIO AQUÍ

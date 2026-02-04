@@ -1,0 +1,55 @@
+/* --- ESTILO APPLE DARK MODE --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #e6edf3;
+    background-color: transparent !important;
+}
+
+/* --- CENTRADO TOTAL --- */
+/* Esto fuerza que el contenido esté en el medio y no se vaya a los lados */
+.page-columns {
+    display: flex;
+    justify-content: center;
+    max-width: 900px; /* Ancho máximo de lectura */
+    margin: 0 auto;
+}
+
+/* --- EFECTO CRISTAL EN EL TEXTO --- */
+/* El contenido principal tendrá un fondo negro muy suave y difuminado */
+main.content {
+    background: radial-gradient(circle, rgba(13, 17, 23, 0.8) 0%, rgba(13, 17, 23, 0) 100%);
+    backdrop-filter: blur(3px); /* Difumina lo que pase por detrás justo en el centro */
+    padding: 40px;
+    border-radius: 20px;
+    z-index: 100; /* Asegura que esté DELANTE de las animaciones */
+}
+
+/* --- TÍTULOS --- */
+h1.title {
+    font-weight: 800;
+    text-align: center; /* Título centrado */
+    background: -webkit-linear-gradient(120deg, #00d2ff, #ffffff, #58a6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: #8b949e;
+    font-size: 1.2rem;
+}
+
+/* --- NAVBAR INVISIBLE --- */
+.navbar {
+    background: rgba(1, 4, 9, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(56, 139, 253, 0.1);
+}
+
+/* --- ESTILO PARA BOTONES Y ENLACES --- */
+a { color: #58a6ff; transition: all 0.2s ease; }
+a:hover { color: #a5d6ff; text-shadow: 0 0 10px rgba(88, 166, 255, 0.6); }
+
+/* --- QUARTO CLEANUP --- */
+.quarto-title-block .quarto-title-banner { background: transparent !important; }

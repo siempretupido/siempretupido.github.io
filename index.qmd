@@ -1,0 +1,23 @@
+---
+title: "Nicolás Rojo"
+subtitle: "Quantum Control Researcher | TCCM Student"
+about:
+  template: jolla
+  image: profile.jpg  # Recuerda poner una foto con este nombre en la carpeta luego
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: Github
+      href: https://github.com
+---
+
+## About Me
+
+I am a Physicist/Chemist bridging the gap between **Quantum Mechanics** and **Code**.
+
+Currently working on:
+* **MSc Thesis:** Optimal Control for Spin Chains (Krotov Method).
+* **Research:** Tensor Networks & Open Quantum Systems.
+* **Dev:** Python, Quarto & High-Performance Computing.

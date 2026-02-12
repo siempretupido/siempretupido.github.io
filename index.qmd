@@ -54,7 +54,7 @@ page-layout: full
 </div>
 
 <div class="info-card" data-aos="fade-up">
-    <h2>Projects & Publications</h2>
+    <h2>Some of my projects</h2>
 
     <div class="projects-collapsible">
         <div class="projects-grid">

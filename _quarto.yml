@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+
 website:
   title: "Nicolás Rojo"
   navbar:
@@ -14,10 +15,14 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/nicol%C3%A1s-r-2909a3268/
 
-# ... (lo de arriba igual)
 format:
   html:
     theme: cosmo
     css: styles.css
-    include-before-body: sc-visuals.html
-    include-in-header: aos-head.html
+    # Añadimos los archivos de Google Tag Manager aquí:
+    include-in-header: 
+      - aos-head.html
+      - gtm-head.html
+    include-before-body: 
+      - sc-visuals.html
+      - gtm-body.html
